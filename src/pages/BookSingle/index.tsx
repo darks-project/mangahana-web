@@ -7,8 +7,8 @@ import { MainTemplate } from 'templates/Main';
 export const BookSingle: FC = () => {
 
   const { poster, title } = {
-    poster: 'https://m.media-amazon.com/images/I/81OYRZEQG7L._AC_UF1000,1000_QL80_.jpg',
-    title: 'Дара өрлеу',
+    poster: '/images/aot/1.png',
+    title: 'Шапқан титан',
   };
 
   return (

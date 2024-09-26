@@ -1,7 +1,9 @@
 import { FC, useState } from 'react';
 
-import './styles.scss';
 import { DefaultPageType } from './pageTypes/Default';
+import { ReaderHeader } from './Header';
+
+import './styles.scss';
 
 export const Reader: FC = () => {
   const [focus, setFocus] = useState<boolean>(false);
@@ -20,6 +22,7 @@ export const Reader: FC = () => {
   
   return (
     <div className={'reader-default' + (focus ? ' focus':'')}>
+      <ReaderHeader />
       <DefaultPageType setFocus={setFocus} toggleFocus={toggleFocus} pages={pages} />
     </div>
   );

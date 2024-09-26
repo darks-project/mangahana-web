@@ -9,14 +9,14 @@ export const Header: FC = () => {
     <header>
       <div className='container'>
 
-        <Link to='/' className='logo'>beyne.</Link>
+        <Link to='/' className='logo'>hikaya.</Link>
 
         {
-        /* <nav>
-          <Link to='/catalog'>каталог</Link>
-          <Link to='/catalog'></Link>
-          <Link to='/catalog'>каталог</Link>
-        </nav> */
+        // <nav>
+        //   <Link to='/catalog'>Каталог</Link>
+        //   <Link to='/catalog'>Топтар</Link>
+        //   <Link to='/catalog'>FAQ</Link>
+        // </nav>
         }
 
         <User />
