@@ -1,9 +1,9 @@
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import { MainTemplate } from 'templates/Main';
 
 import { Home } from 'pages/Home';
 import { BookSingle } from 'pages/BookSingle';
 import { Reader } from 'pages/Reader';
+import { Login } from 'pages/Login';
 
 export const Router = () => {
   const router = createBrowserRouter([
@@ -13,6 +13,8 @@ export const Router = () => {
       errorElement: <div>error</div>,
   
       children: [
+        { path: '/login', element: <Login /> },
+
         { path: '/', element: <Home /> },
 
         { path: '/reader', element: <Reader /> },

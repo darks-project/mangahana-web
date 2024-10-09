@@ -9,7 +9,7 @@ export const User: FC = () => {
   return (
     <div className={isShow ? 'user show' : 'user'} onClick={onClick}>
       <div className='top'>
-        <img src='https://masterpiecer-images.s3.yandex.net/3587aaeb6e1f11ee8952222e7fa838a6:upscaled' />
+        <img src='https://aniyuki.com/wp-content/uploads/2022/04/aniyuki-sasuke-uchiha-avatar-29.jpg' alt='user avatar' />
         <svg className="ionicon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M112 184l144 144 144-144" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48"/></svg>
       </div>
       <div className='bottom'>
