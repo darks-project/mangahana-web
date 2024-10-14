@@ -1,0 +1,13 @@
+.change-password {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  form {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 12px;
+  }
+}

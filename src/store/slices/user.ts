@@ -6,8 +6,8 @@ interface CounterState {
   isAuth: boolean;
   user: {
     id: number;
-    name: string;
-    photo: string;
+    username: string | null;
+    photo: string | null;
   }
 }
 
@@ -15,8 +15,8 @@ const initialState: CounterState = {
   isAuth: false,
   user: {
     id: 0,
-    name: 'string',
-    photo: 'string',
+    username: null,
+    photo: null,
   }
 };
 
@@ -24,10 +24,16 @@ export const counterSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state) => {
+    login: (state, payload) => {
       state.isAuth = true;
+      state.user = {
+        id: payload.payload.id,
+        photo: payload.payload.photo,
+        username: payload.payload.username,
+      }
     },
     logout: (state) => {
+      localStorage.removeItem('token');
       state.isAuth = false;
     },
   },

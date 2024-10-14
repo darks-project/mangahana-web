@@ -1,0 +1,16 @@
+.input-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 4px;
+
+  label {
+    color: gray;
+  }
+
+  .error {
+    color: #f87c71;
+    font-size: 15px;
+  }
+}

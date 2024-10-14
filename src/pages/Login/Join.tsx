@@ -1,39 +1,71 @@
 import axios from 'axios';
-import { FC, useState } from 'react';
-import InputMask from 'react-input-mask';
+import { showAlert } from 'components/Alert';
+import { FC, FormEvent, useState } from 'react';
+import { store } from 'store';
+import { login } from 'store/slices/user';
 
 interface JoinProps {
-  phone: string;
+  code: string;
+  clearedPhone: string;
 }
 
-export const JoinComponent: FC<JoinProps> = ({ phone }) => {
-  const [isConfirmed, setConfirmed] = useState<boolean>(false);
+export const JoinComponent: FC<JoinProps> = ({ code, clearedPhone }) => {
+  const [isLoading, setLoading] = useState<boolean>(false);
 
-  const codeChange = (code: string) => {
-    const clearedCode = code.replace(/\s/g, '');
-    if (clearedCode.length === 6) {
-      axios.post('/users/confirmation', { phone: phone, confirmation_code: clearedCode }).
-      then().catch(reason => console.log(reason));
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmedPassword, setConfirmedPassword] = useState<string>('');
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    
+    const regex = /^[a-zA-Z0-9]+(_?[a-zA-Z0-9]+)*$/;
+    if (!regex.test(username)) {
+      showAlert('Лақап атына тек латын әріптері, сандар және астыңғы сызық (_) таңбасын қолдануға болады');
+      return;
     }
+
+    if (password.length < 8) {
+      showAlert('Құпия сөз тым қысқа');
+      return;
+    }
+
+    if (password !== confirmedPassword) {
+      showAlert('Құпия сөздер сәйкес келмейді');
+      return;
+    }
+
+    let data = {
+      phone: clearedPhone,
+      confirmation_code: code,
+      username: username,
+      password: password,
+    }
+    axios.post('/users/register', data).
+    then((value: any) => {
+      localStorage.setItem('token', value.response.data.token);
+      store.dispatch(login(value.data));
+    }).
+    catch(reason => showAlert(reason));
   };
 
   return (
-    <form>
-      <div className='title'>
-        <div className='back' onClick={() => console.log('back')}>
-          <svg className="ionicon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M244 400L100 256l144-144M120 256h292" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48"/></svg>
-        </div>
-        <div>Тіркелу</div>
-      </div>
-      
-      <InputMask className='input' mask='+7 799 999 9999' maskChar='' placeholder='+7 7' value={phone} disabled />
-      <InputMask className='input' mask='9 9 9 9 9 9' onChange={(e) => codeChange(e.target.value)} maskChar='' placeholder='0 0 0 0 0 0' />
+    <form onSubmit={onSubmit}>
 
+      <div className='title'>Тіркелу</div>
+      
       <label>Лақап атыңды жаз:</label>
-      <input className='input' type='text' placeholder='username' />
-      <input className='input' type='password' placeholder='Құпия сөз' />
+      <input className='input' type='text' placeholder='Nickname' onChange={(e) => setUsername(e.target.value)} />
+      
+      <label>Құпия сөз ойлап тап:</label>
+      <input className='input' type='password' placeholder='Құпия сөз' onChange={(e) => setPassword(e.target.value)} />
+      
+      <label>Құпия сөзді қайтала:</label>
+      <input className='input' type='password' placeholder='Құпия сөз' onChange={(e) => setConfirmedPassword(e.target.value)} />
+
       <button className='button'>
         <div>Тіркелу</div>
+        {isLoading ? <div className='lds-dual-ring'></div> : ''}
       </button>
     </form>
   );

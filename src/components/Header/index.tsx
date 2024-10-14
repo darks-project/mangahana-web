@@ -1,18 +1,34 @@
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.scss';
+
 import { User } from './User';
 import { useSelector } from 'react-redux';
 
 export const Header: FC = () => {
   const { isAuth } = useSelector((state: any) => state.user);
+  const headerRef = useRef<HTMLHeadElement>(null);
+
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      headerRef.current!.classList.add('show-bg');
+    } else {
+      headerRef.current!.classList.remove('show-bg');
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  });
 
   return (
-    <header>
+    <header ref={headerRef}>
       <div className='container'>
 
-        <Link to='/' className='logo'>komiX.</Link>
+        <Link to='/' className='logo'>Hikaya</Link>
 
         {
         // <nav>

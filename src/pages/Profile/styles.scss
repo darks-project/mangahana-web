@@ -1,0 +1,36 @@
+.profile-page {
+  
+  width: 100%;
+  background: red;
+  padding-top: 50px;
+
+  .box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: var(--color-dark-2);
+    padding: 30px;
+    margin-top: 95px;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+    margin-top: -105px;
+  }
+
+  .data {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    .username {
+      font-size: 32px;
+      font-weight: 600;
+    }
+  }
+}

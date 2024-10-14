@@ -2,13 +2,18 @@ import { FC, FormEvent, useRef, useState } from 'react';
 import InputMask from 'react-input-mask';
 
 import './styles.scss';
-import { ArrowForwardOutline } from 'react-ionicons';
 import axios from 'axios';
+
 import { SignInComponent } from './SignIn';
 import { JoinComponent } from './Join';
+import { ConfirmationComponent } from './confirmation';
+import { ArrowRightIcon } from 'icons/ArrowRight';
 
 export const Login: FC = () => {
   const [phone, setPhone] = useState<string>('');
+  const [clearedPhone, setClearedPhone] = useState<string>('');
+  const [code, setCode] = useState<string>('');
+
   const [isNumberFree, setNumberFree] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -18,7 +23,8 @@ export const Login: FC = () => {
     e.preventDefault();
     setLoading(true);
 
-    let clearedPhone = phone.replace(/\s/g, '').slice(2);
+    let clearedPhone = phone.replace(/\s/g, '');
+    clearedPhone = clearedPhone.slice(2)
     
     if (clearedPhone.length !== 10) {
       setLoading(false);
@@ -31,12 +37,13 @@ export const Login: FC = () => {
         setNumberFree(false);
       } else {
         setNumberFree(true);
+        
         axios.post(`/users/join`, { phone: clearedPhone }).catch(() => {});
       }
-      setPhone(clearedPhone);
+      setClearedPhone(clearedPhone);
       slide();
     })
-    .catch(_ => {});
+    .catch(reason => console.log(reason));
   };
 
   const slide = () => {
@@ -46,7 +53,11 @@ export const Login: FC = () => {
     }
   };
 
-  const back = () => wrapperRef.current!.classList.remove('active');
+  const toRegister = () => {
+    if (wrapperRef.current) {
+      wrapperRef.current.classList.add('register');
+    }
+  }
 
   return (
     <div className='login-page container'>
@@ -61,18 +72,17 @@ export const Login: FC = () => {
             <InputMask className='input' mask='+7 799 999 9999' maskChar='' placeholder='+7 7' onChange={(e) => setPhone(e.target.value)} />
             <button className='button'>
               <div>Жалғастыру</div>
-              {isLoading ? <div className='lds-dual-ring'></div> : <ArrowForwardOutline />}
+              {isLoading ? <div className='lds-dual-ring'></div> : <ArrowRightIcon />}
             </button>
           </form>
 
           {
             isNumberFree ?
-            <JoinComponent phone={phone} /> :
-            <SignInComponent phone={phone} />
+            <ConfirmationComponent setConfirmationCode={setCode} toRegister={toRegister} phone={phone} clearedPhone={clearedPhone} /> :
+            <SignInComponent phone={phone} clearedPhone={clearedPhone} />
           }
-
           
-
+          {code.length === 6 ? <JoinComponent code={code} clearedPhone={clearedPhone} /> : ''}
         </div>
       </div>
     </div>
