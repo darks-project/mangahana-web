@@ -1,5 +1,6 @@
 .alert {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
   top: 0;
   left: 0;
   width: 100%;
@@ -14,11 +15,11 @@
   padding-top: 35vh;
   opacity: 0;
   visibility: hidden;
-  transition: 0.35s ease-in-out;
+  transition: 0.25s ease-in-out;
   
   .content {
     width: 300px;
-    background: var(--color-dark-2);
+    background: var(--color-block);
     border-radius: 8px;
     padding: 25px;
 
@@ -28,6 +29,9 @@
     text-align: center;
 
     position: relative;
+
+    transform: scale(1.2);
+    transition: 0.2s;
 
     .message {
       color: var(--color-gray);
@@ -46,5 +50,8 @@
   display: flex;
   visibility: visible;
   opacity: 1;
-  padding-top: 30vh;
+
+  .content {
+    transform: scale(1);
+  }
 }

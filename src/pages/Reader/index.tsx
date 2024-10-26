@@ -4,8 +4,13 @@ import { DefaultPageType } from './pageTypes/Default';
 import { ReaderHeader } from './Header';
 
 import './styles.scss';
+import { VerticalReader } from './Vertical';
 
-export const Reader: FC = () => {
+interface ReaderProps {
+
+}
+
+export const Reader: FC<ReaderProps> = () => {
   const [focus, setFocus] = useState<boolean>(false);
   
   const toggleFocus = () => setFocus(!focus);
@@ -23,7 +28,7 @@ export const Reader: FC = () => {
   return (
     <div className={'reader-default' + (focus ? ' focus':'')}>
       <ReaderHeader />
-      <DefaultPageType setFocus={setFocus} toggleFocus={toggleFocus} pages={pages} />
+      <VerticalReader toggleFocus={toggleFocus} pages={pages} />
     </div>
   );
 };

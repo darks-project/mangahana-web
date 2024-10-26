@@ -6,10 +6,10 @@ import { login } from 'store/slices/user';
 
 interface JoinProps {
   code: string;
-  clearedPhone: string;
+  formattedPhone: string;
 }
 
-export const JoinComponent: FC<JoinProps> = ({ code, clearedPhone }) => {
+export const JoinComponent: FC<JoinProps> = ({ code, formattedPhone }) => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const [username, setUsername] = useState<string>('');
@@ -36,7 +36,7 @@ export const JoinComponent: FC<JoinProps> = ({ code, clearedPhone }) => {
     }
 
     let data = {
-      phone: clearedPhone,
+      phone: formattedPhone,
       confirmation_code: code,
       username: username,
       password: password,

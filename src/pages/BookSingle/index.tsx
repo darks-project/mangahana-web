@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 import './styles.scss';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,14 @@ export const BookSingle: FC = () => {
     poster: '/images/aot/1.png',
     title: 'Шапқан титан',
   };
+
+  useEffect(() => {
+    document.querySelector('header')?.classList.add('hide-bg');
+
+    return () => {
+      document.querySelector('header')?.classList.remove('hide-bg');
+    };
+  });
 
   return (
     <MainTemplate>

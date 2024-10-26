@@ -16,7 +16,6 @@ export const SettingsTemplate: FC<templateProps> = ({ link, children }) => {
   const links = [
     { name: 'Аккаунт', link: '/settings', icon: <UserIcon /> },
     { name: 'Құпиясөз', link: '/settings/password', icon: <LockIcon /> },
-    { name: 'Қауіпсіздік', link: '/settings/security', icon: <KeyIcon /> },
   ];
 
   return (

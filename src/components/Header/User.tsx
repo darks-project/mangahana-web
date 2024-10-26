@@ -18,7 +18,7 @@ export const User: FC = () => {
 
   const getPhoto = () => {
     if (user.photo) {
-      return process.env.REACT_APP_CDN_URL + user.photo;
+      return user.photo;
     }
     return '/images/default.jpg';
   };

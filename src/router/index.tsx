@@ -26,7 +26,7 @@ export const Router = () => {
       errorElement: <div>error</div>,
       loader: async () => {
         try {
-          const res = await axios.get('/users/getMe');
+          const res = await axios.get('/authorization/get_me');
           if (res.status === 200) {
             store.dispatch(login(res.data));
           }
@@ -53,7 +53,7 @@ export const Router = () => {
 
   return (
     <>
-    <Alert />
+      <Alert />
       <RouterProvider router={router} />
     </>
   );

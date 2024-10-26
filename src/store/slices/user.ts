@@ -36,10 +36,13 @@ export const counterSlice = createSlice({
       localStorage.removeItem('token');
       state.isAuth = false;
     },
+    updatePhoto: (state, payload) => {
+      state.user.photo = payload.payload;
+    },
   },
 })
 
-export const { login, logout } = counterSlice.actions;
+export const { login, logout, updatePhoto } = counterSlice.actions;
 
 export const selectCount = (state: any) => state.counter.value;
 

@@ -1,15 +1,17 @@
 :root {
-  --color-red: #fe0603;
-  --color-blue: #0c68e9;
+  --color-red: #ea3c10;
+  --color-blue: #4058f2;
   --color-purple: #ab47bc;
   --color-orange: #FFA500;
+  --color-indigo: #5910ea;
   --color-dark: #111315;
   --color-dark-2: #171a1c;
   --color-gray: #5c6166;
 
   --color-text: #fff;
-  --color-bg: var(--color-dark);
-  --color-main: var(--color-blue);
+  --color-bg: #101010;
+  --color-block: #141414;
+  --color-main: var(--color-indigo);
 }
 *::-webkit-scrollbar {
   background-color: transparent;
@@ -85,8 +87,8 @@ html, body, #root {
   font-weight: 500;
   letter-spacing: 0.5px;
 
-  border-radius: 10px;
-  padding: 10px 24px;
+  border-radius: 8px;
+  padding: 8px 16px;
 
   transition: 0.25s;
   
@@ -99,22 +101,56 @@ html, body, #root {
   }
 
   &:hover {
-    background: #0455c6;
+    filter:opacity(0.8)
   }
 
   &:active {
-    background: #0043a1;
+    filter:opacity(0.6)
   }
 }
 
 
+.button-red {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid var(--color-red);
+  color: var(--color-red);
+
+  cursor: pointer;
+
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  border-radius: 8px;
+  padding: 8px 16px;
+
+  transition: 0.25s;
+
+  &:hover {
+    background-color: var(--color-red);
+    color: #fff;
+    transition: 0.25s;
+  }
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .input {
-  background-color: #111315;
+  background-color: var(--color-bg);
   border-radius: 10px;
   padding: 10px;
   font-size: 16px;
   width: 100%;
   color: #fff;
+  appearance: none;
 
   &::placeholder {
     color: #ffffff54;

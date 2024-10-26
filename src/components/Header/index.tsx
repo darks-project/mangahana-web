@@ -28,14 +28,15 @@ export const Header: FC = () => {
     <header ref={headerRef}>
       <div className='container'>
 
-        <Link to='/' className='logo'>Hikaya</Link>
+        <Link to='/' className='logo'>baribir.org</Link>
 
         {
-        // <nav>
-        //   <Link to='/catalog'>Каталог</Link>
-        //   <Link to='/catalog'>Топтар</Link>
-        //   <Link to='/catalog'>FAQ</Link>
-        // </nav>
+        <nav>
+          <Link to='/catalog'>Басты бет</Link>
+          <Link to='/catalog'>Каталог</Link>
+          <Link to='/catalog'>Топтар</Link>
+          <Link to='/catalog'>FAQ</Link>
+        </nav>
         }
 
         {isAuth ? <User />: <Link className='button' to={'/login'}>Кіру</Link>}

@@ -8,28 +8,39 @@ import { login } from 'store/slices/user';
 
 interface SignInProps {
   phone: string;
-  clearedPhone: string;
+  formattedPhone: string;
 }
 
-export const SignInComponent: FC<SignInProps> = ({ phone, clearedPhone }) => {
+export const SignInComponent: FC<SignInProps> = ({ phone, formattedPhone }) => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [password, setPassword] = useState<string>('');
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     
     if (password.length < 1) {
       showAlert('Құпия сөз бос болуы мүмкін емес');
+      setLoading(false);
       return;
     }
 
-    axios.post('/users/signin', { phone: clearedPhone, password }).
+    axios.post('/authorization/login', { phone: formattedPhone, password }).
     then(value => {
       const token = value.data.token;
       localStorage.setItem('token', token);
       store.dispatch(login(value.data));
     }).
-    catch(reason => showAlert(reason.response.data.code));
+    catch(reason => {
+      switch (reason.response.data.code) {
+        case 'INVALID_PASSWORD':
+          showAlert('Құпиясөз дұрыс емес');
+          break;
+      
+        default:
+          break;
+      }
+    }).finally(() => setLoading(false));
   };
 
   return (

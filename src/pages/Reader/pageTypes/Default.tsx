@@ -28,7 +28,7 @@ export const DefaultPageType: FC<DefaultPageTypeProps> = ({ pages, setFocus, tog
   };
 
   return (
-    <div className='content'>
+    <div className='default-reader'>
       <div className='prev' onClick={PrevPage}></div>
       <div className='pages' onClick={() => toggleFocus()}>
         <img src={pages[activePage]} />

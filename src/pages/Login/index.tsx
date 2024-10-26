@@ -1,55 +1,33 @@
-import { FC, FormEvent, useRef, useState } from 'react';
-import InputMask from 'react-input-mask';
-
-import './styles.scss';
-import axios from 'axios';
+import { FC, useRef, useState } from 'react';
 
 import { SignInComponent } from './SignIn';
 import { JoinComponent } from './Join';
-import { ConfirmationComponent } from './confirmation';
-import { ArrowRightIcon } from 'icons/ArrowRight';
+import { ConfirmationComponent } from './Confirmation';
+import { EnterPhone } from './EnterPhone';
+
+import './styles.scss';
+import { MainTemplate } from 'templates/Main';
 
 export const Login: FC = () => {
   const [phone, setPhone] = useState<string>('');
-  const [clearedPhone, setClearedPhone] = useState<string>('');
+  const [formattedPhone, setFormattedPhone] = useState<string>('');
   const [code, setCode] = useState<string>('');
 
-  const [isNumberFree, setNumberFree] = useState<boolean>(false);
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [isPhoneExists, setPhoneExists] = useState<boolean>(false);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    let clearedPhone = phone.replace(/\s/g, '');
-    clearedPhone = clearedPhone.slice(2)
-    
-    if (clearedPhone.length !== 10) {
-      setLoading(false);
-      return;
-    }
-  
-    axios.get(`/users/phoneExists?phone=${clearedPhone}`, {})
-    .then(value => {
-      if (value.data) {
-        setNumberFree(false);
-      } else {
-        setNumberFree(true);
-        
-        axios.post(`/users/join`, { phone: clearedPhone }).catch(() => {});
-      }
-      setClearedPhone(clearedPhone);
-      slide();
-    })
-    .catch(reason => console.log(reason));
+  const nextStep = (isPhoneExists: boolean, phone: string, formattedPhone: string) => {
+    setPhone(phone);
+    setFormattedPhone(formattedPhone);
+    setPhoneExists(isPhoneExists);
+    slide();
+    return;
   };
 
   const slide = () => {
     if (wrapperRef.current) {
       wrapperRef.current.classList.add('active');
-      setLoading(false);
     }
   };
 
@@ -60,31 +38,22 @@ export const Login: FC = () => {
   }
 
   return (
-    <div className='login-page container'>
+    <MainTemplate>
+      <div className='login-page container'>
+        <div className='box'>
+          <div className='wrapper' ref={wrapperRef}>
+            <EnterPhone nextStep={nextStep} />
 
-      <div className='box'>
-
-        <div className='wrapper' ref={wrapperRef}>
-          
-          <form className='main' onSubmit={onSubmit}>
-            <div className='title'>Сәлем!</div>
-            <div className='description'>Нөміріңді енгізіп, жалғастыр:</div>
-            <InputMask className='input' mask='+7 799 999 9999' maskChar='' placeholder='+7 7' onChange={(e) => setPhone(e.target.value)} />
-            <button className='button'>
-              <div>Жалғастыру</div>
-              {isLoading ? <div className='lds-dual-ring'></div> : <ArrowRightIcon />}
-            </button>
-          </form>
-
-          {
-            isNumberFree ?
-            <ConfirmationComponent setConfirmationCode={setCode} toRegister={toRegister} phone={phone} clearedPhone={clearedPhone} /> :
-            <SignInComponent phone={phone} clearedPhone={clearedPhone} />
-          }
-          
-          {code.length === 6 ? <JoinComponent code={code} clearedPhone={clearedPhone} /> : ''}
+            {
+              isPhoneExists ?
+              <SignInComponent phone={phone} formattedPhone={formattedPhone} /> :
+              <ConfirmationComponent setConfirmationCode={setCode} toRegister={toRegister} phone={phone} formattedPhone={formattedPhone} />
+            }
+            
+            {code.length === 6 ? <JoinComponent code={code} formattedPhone={formattedPhone} /> : ''}
+          </div>
         </div>
       </div>
-    </div>
+    </MainTemplate>
   );
 };
