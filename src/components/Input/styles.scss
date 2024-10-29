@@ -14,3 +14,8 @@
     font-size: 15px;
   }
 }
+.input-component.error {
+  input {
+    border: 1px solid #f87c71;
+  }
+}

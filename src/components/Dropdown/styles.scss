@@ -1,0 +1,67 @@
+.dropdown-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    color: gray;
+  }
+
+  .dropdown {
+    user-select: none;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    .select {
+      width: 100%;
+      background: var(--color-bg);
+      padding: 12px;
+      border: 1px solid rgba($color: gray, $alpha: 0.15);
+      border-radius: 8px;
+      height: 42px;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      svg {
+        width: 24px;
+      }
+    }
+  
+    .options {
+      width: 100%;
+      background-color: var(--color-bg);
+      border-radius: 0 0 8px 8px;
+      border: 1px solid rgba($color: gray, $alpha: 0.15);
+      border-top: 0;
+      position: absolute;
+      height: 0;
+      transition: 0.25s;
+      overflow: hidden;
+      padding: 6px 0;
+
+      .option {
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+    }
+  }
+  .dropdown.show {  
+    overflow: visible;
+    .select {
+      border-radius: 8px 8px 0 0;
+      border-bottom: 1px solid transparent;
+
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+    .options {
+      height: auto;
+    }
+  }
+}

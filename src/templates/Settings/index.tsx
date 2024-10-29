@@ -19,13 +19,13 @@ export const SettingsTemplate: FC<templateProps> = ({ link, children }) => {
   ];
 
   return (
-    <MainTemplate>
+    <MainTemplate title='Баптау'>
       <div className='settings-page container'>
         
         <aside>
           {
             links.map((v, i) => (
-              <Link to={v.link} className={v.link === link ? 'active item' : 'item'}>
+              <Link to={v.link} className={v.link === link ? 'active item' : 'item'} key={i}>
                 {v.icon}
                 <span>{v.name}</span>
               </Link>

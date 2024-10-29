@@ -1,18 +1,16 @@
 .profile-page {
-  
+  max-width: 600px;
   width: 100%;
-  background: red;
-  padding-top: 50px;
 
   .box {
     width: 100%;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    background: var(--color-dark-2);
+    gap: 16px;
+    background: var(--color-block);
     padding: 30px;
-    margin-top: 95px;
   }
 
   img {
@@ -20,13 +18,12 @@
     height: 150px;
     object-fit: cover;
     border-radius: 100%;
-    margin-top: -105px;
   }
 
   .data {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    align-items: center;
 
     .username {
       font-size: 32px;

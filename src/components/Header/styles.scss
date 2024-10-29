@@ -2,7 +2,7 @@ header.hide-bg {
   background-color: transparent;
 }
 header {
-  background-color: #141414;
+  background-color: var(--color-block);
   // backdrop-filter: blur(8px);
   // border-bottom: 1px solid rgba(61, 71, 81, 0.3);
   width: 100%;
@@ -18,17 +18,25 @@ header {
   .container {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 32px;
 
     .logo {
-      font-size: 21px;
+      font-size: 24px;
       font-weight: 600;
     }
 
     nav {
       display: flex;
       gap: 15px;
-      font-size: 15px;
+      
+      a {
+        font-weight: 400;
+        transition: 0.25s;
+
+        &:hover {
+          color: var(--color-main);
+        }
+      }
     }
 
 
@@ -65,11 +73,9 @@ header {
 
       .bottom {
         width: 200px;
-
-        background-color: var(--color-block);
+        border: 1px solid rgba($color:gray, $alpha: 0.1);
 
         border-radius: 8px;
-        box-shadow: 0 25px 35px rgba(0, 0, 0, 0.01);
 
         padding: 20px;
         margin-top: 15px;
@@ -93,8 +99,8 @@ header {
 
           cursor: pointer;
 
-          color: #fff;
-          fill: #fff;
+          color: var(--color-text);
+          fill: var(--color-text);
 
           &:hover {
             color: var(--color-main);

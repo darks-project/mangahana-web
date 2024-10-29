@@ -38,7 +38,7 @@ export const Login: FC = () => {
   }
 
   return (
-    <MainTemplate>
+    <MainTemplate title='Кіру'>
       <div className='login-page container'>
         <div className='box'>
           <div className='wrapper' ref={wrapperRef}>

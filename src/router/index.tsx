@@ -16,6 +16,11 @@ import { store } from 'store';
 import { Profile, profileLoader } from 'pages/Profile';
 import { SecuritySettings } from 'pages/Settings/Security';
 import { PasswordSettings } from 'pages/Settings/Password';
+import { AddTeam } from 'pages/teams/AddTeam';
+import { Team, TeamLoader } from 'pages/teams/Team';
+import { MyTeams, MyTeamsLoader } from 'pages/teams/My';
+import { AddBook, AddBookLoader } from 'pages/teams/AddBook';
+import { PrivateRoute } from './PrivateRoute';
 
 
 export const Router = () => {
@@ -39,7 +44,12 @@ export const Router = () => {
         { path: '/login', element: <PublicRoute Component={<Login />} /> },
 
         { path: '/', element: <Home /> },
-        { path: '/users/:username', element: <Profile />, loader: profileLoader },
+        { path: '/users/:id', element: <Profile />, loader: profileLoader },
+
+        { path: '/teams/my', element: <MyTeams />, loader: MyTeamsLoader },
+        { path: '/teams/add', element: <AddTeam /> },
+        { path: '/teams/:teamId', element: <Team />, loader: TeamLoader },
+        { path: '/teams/:teamId/add-book', element: <PrivateRoute Component={<AddBook />} /> , loader: AddBookLoader},
         
         { path: '/settings', element: <ProfileSettings /> },
         { path: '/settings/security', element: <SecuritySettings /> },

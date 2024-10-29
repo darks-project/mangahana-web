@@ -25,17 +25,16 @@ export const Header: FC = () => {
   });
 
   return (
-    <header ref={headerRef}>
+    <header className='block' ref={headerRef}>
       <div className='container'>
 
-        <Link to='/' className='logo'>baribir.org</Link>
+        <Link to='/' className='logo'>mangahana</Link>
 
         {
         <nav>
-          <Link to='/catalog'>Басты бет</Link>
-          <Link to='/catalog'>Каталог</Link>
-          <Link to='/catalog'>Топтар</Link>
-          <Link to='/catalog'>FAQ</Link>
+          <Link to='/'>Басы</Link>
+          <Link to='/catalog'>Топтама</Link>
+          <Link to='/faq'>FAQ</Link>
         </nav>
         }
 

@@ -1,0 +1,36 @@
+.my-teams-page {
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 600px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    
+    .row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+
+      img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+      .name {
+        font-size: 20px;
+      }
+    }
+  }
+}

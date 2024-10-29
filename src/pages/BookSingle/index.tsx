@@ -1,11 +1,10 @@
 import { FC, useEffect } from 'react';
-
-import './styles.scss';
 import { Link } from 'react-router-dom';
 import { MainTemplate } from 'templates/Main';
 
-export const BookSingle: FC = () => {
+import './styles.scss';
 
+export const BookSingle: FC = () => {
   const { poster, title } = {
     poster: '/images/aot/1.png',
     title: 'Шапқан титан',
@@ -20,7 +19,7 @@ export const BookSingle: FC = () => {
   });
 
   return (
-    <MainTemplate>
+    <MainTemplate title={title}>
       <div className='book-page'>
 
         <div className='background'>

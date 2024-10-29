@@ -2,6 +2,7 @@ import { ExitIcon } from 'icons/Exit';
 import { LibraryIcon } from 'icons/Library';
 import { SettingsIcon } from 'icons/Settings';
 import { UserIcon } from 'icons/User';
+import { UsersIcon } from 'icons/Users';
 import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -31,14 +32,18 @@ export const User: FC = () => {
         <img src={getPhoto()} alt='user avatar' />
         <svg className="ionicon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M112 184l144 144 144-144" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="48"/></svg>
       </div>
-      <div className='bottom'>
+      <div className='bottom block'>
         {/* <Link className='item' to={`/users/${user.username}`}>
           <UserIcon />
           <span>Парақша</span>
         </Link> */}
-        <Link className='item' to='/library'>
-          <LibraryIcon />
-          <span>Сөре</span>
+        <Link className='item' to={`/users/${user.id}`}>
+          <UserIcon />
+          <span>Парақша</span>
+        </Link>
+        <Link className='item' to='/teams/my'>
+          <UsersIcon />
+          <span>Ұйымдар</span>
         </Link>
         <Link className='item' to='/settings'>
           <SettingsIcon />

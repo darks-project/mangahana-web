@@ -20,8 +20,8 @@
       gap: 8px;
       padding: 10px;
       border-radius: 6px;
-      fill: #fff;
-      color: #fff;
+      fill: var(--color-text);
+      color: var(--color-text);
       cursor: pointer;
       transition: 0.25s;
 
@@ -31,10 +31,14 @@
 
       &:hover {
         background: var(--color-main);
+        color: var(--color-button-text);
+      fill: var(--color-button-text);
       }
     }
     .item.active {
       background: var(--color-main);
+      color: var(--color-button-text);
+      fill: var(--color-button-text);
     }
   }
 

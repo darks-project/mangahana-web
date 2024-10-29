@@ -10,18 +10,11 @@ import './styles.scss';
 export const Profile: FC = () => {
   const { id, username, photo, description } = useLoaderData() as any;
 
-  const getPhoto = () => {
-    if (photo) {
-      return process.env.REACT_APP_CDN_URL + photo;
-    }
-    return '/images/default.jpg';
-  };
-
   return (
-    <MainTemplate>
+    <MainTemplate title={username}>
       <div className='profile-page mini-container'>
         <div className='box'>
-          <img src={getPhoto()} />
+          <img src={photo ? photo : '/images/default.jpg'} />
           <div className='data'>
             <div className='username'>{username}</div>
             <div>{description}</div>
@@ -34,7 +27,7 @@ export const Profile: FC = () => {
 
 export const profileLoader: LoaderFunction = async ({ params }) => {
   try {
-    const res = await axios.get(`/users?id=${params.username}`);
+    const res = await axios.get(`/authorization/get_user?id=${params.id}`);
     if (res.status === 200) {
       return res.data;
     }

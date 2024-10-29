@@ -17,7 +17,7 @@ export const Home: FC = () => {
   ];
 
   return (
-    <MainTemplate>
+    <MainTemplate title='Басты бет'>
       <div className='home-page container'>
 
       <div className='last-books'>

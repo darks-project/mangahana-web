@@ -1,0 +1,83 @@
+.team-page {
+  max-width: 600px;
+  width: 100%;
+  padding: 24px;
+  margin: 0 auto;
+  border-radius: 8px;
+
+  .info {
+    margin-bottom: 24px;
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 100%;
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+  }
+  .content {
+    .members {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 16px;
+
+      .member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+
+        img {
+          width: 100%;
+          aspect-ratio: 1;
+          border-radius: 100%;
+          object-fit: cover;
+        }
+
+        span {
+          font-size: 18px;
+        }
+      }
+    }
+    .description {
+      font-size: 15px;
+      line-height: 20px;
+      color: var(--color-gray);
+    }
+  }
+
+  .tabs {
+    margin-bottom: 24px;
+
+    .border {
+      background: var(--color-main);
+      border-radius: 8px;
+      width: 0;
+      height: 2px;
+      left: 0px;
+      position: relative;
+      transition: 0.15s;
+    }
+    
+    .items {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      .item {
+        font-size: 18px;
+        padding-bottom: 10px;
+        cursor: pointer;
+        transition: 0.25s;
+  
+        &:hover {
+          color: var(--color-main);
+        }
+      }
+  
+      .item.active {
+        color: var(--color-main);
+      }
+    }
+  }
+}
